@@ -4,6 +4,8 @@ nmap <Leader>s :write<Enter>
 
 " open nerdTree
 nnoremap <C-n> :NERDTree<CR>
+" open terminal
+nnoremap <C-t> :terminal<CR>
 
 " Space + r redraw vim
 nmap <Leader>r :redraw!<Enter>
