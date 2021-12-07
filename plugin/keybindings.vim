@@ -2,6 +2,9 @@
 " Space + s saves the file
 nmap <Leader>s :write<Enter>
 
+" open nerdTree
+nnoremap <C-n> :NERDTree<CR>
+
 " Space + r redraw vim
 nmap <Leader>r :redraw!<Enter>
 
