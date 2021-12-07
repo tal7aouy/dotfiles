@@ -112,10 +112,6 @@ let &showbreak='↳ '
 " Automatically :write before running commands
 set autowrite
 
-" https://github.com/vim/vim/blob/master/runtime/doc/russian.txt
-" Enable hotkeys for Russian layout
-set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
-
 " Reduce Command timeout for faster escape and O
 set timeoutlen=1000 ttimeoutlen=0
 
