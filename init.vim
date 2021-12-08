@@ -3,8 +3,7 @@ let mapleader = "\<Space>"
 call plug#begin('~/.config/nvim/plugged')
 
 " colorscheme
-Plug 'tomasiser/vim-code-dark'
-
+Plug 'overcache/NeoSolarized'
 " css3 syntax highlight
 Plug 'hail2u/vim-css3-syntax'
 Plug 'scrooloose/nerdtree'
