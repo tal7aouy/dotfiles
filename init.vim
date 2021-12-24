@@ -86,5 +86,7 @@ Plug 'wincent/pinnacle'
 
 " Vim elm syntax
 Plug 'andys8/vim-elm-syntax'
-
+" Airline 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()

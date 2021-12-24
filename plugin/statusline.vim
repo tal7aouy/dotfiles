@@ -1,37 +1,24 @@
-scriptencoding utf-8
+set laststatus=2
+set t_Co=256
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_statusline_ontop=0
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
-if has('statusline')
-  " Switch to User7 highlight group
-  set statusline=%7*
-  set statusline+=%{dot#statusline#lhs()}
-  " Reset highlight group.
-  set statusline+=%*
-  " Switch to User4 highlight group (Powerline arrow).
-  set statusline+=%4*
-  " Powerline arrow.
-  set statusline+=
-  " Reset highlight group.
-  set statusline+=%*
-  " Space.
-  set statusline+=\  "comment to store space
-  " Truncation point, if not enough width available.
-  set statusline+=%<
-  " Parent directory and filename
-  set statusline+=%{expand('%:p:h:t')}/%t
-  " Reset highlight group.
-  set statusline+=%*
-  " Split point for left and right groups
-  set statusline+=%=
-  " Space.
-  set statusline+=\  "comment to store space
-  " set statusline+=               " Powerline arrow.
-  " set statusline+=%5*             " Switch to User5 highlight group.
-  set statusline+=%y
-  set statusline+=\  "comment to store space
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
 endif
 
-if has('autocmd')
-  autocmd BufWinEnter,BufWritePost,FileWritePost,TextChanged,TextChangedI,WinEnter * call dot#statusline#highlight_modified()
-endif
-
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.dirty='⚡'
+let g:airline_theme='night_owl'
 
