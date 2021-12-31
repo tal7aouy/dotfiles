@@ -1,196 +1,111 @@
-" show line number
+" Fundamentals "{{{
+" ---------------------------------------------------------------------
+
+" init autocmd
+autocmd!
+" set script encoding
+scriptencoding utf-8
+" stop loading config if it's on tiny or small
+if !1 | finish | endif
+
+set nocompatible
 set number
-
-" allow backspacing over everything in insert mode
-" on some systems backspace or delete keys doesn't work
-set backspace=indent,eol,start
-
-" show the cursor position
-set ruler
-
-" show cursor line
-" set cursorline
-
-" Don't show extra info at the end of command line
-set showcmd
-
-" Better display for messages
-" set cmdheight=2
-
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-set lazyredraw
-
-" Show relative numbers
-set relativenumber
-
-" ignore annoying swapfile messages
-set shortmess+=A
-" no splash screen
-set shortmess+=I
-" file-read message overwrites previous
-set shortmess+=O
-" truncate non-file messages in middle
-set shortmess+=T
-" don't echo "[w]"/"[written]" when writing
-set shortmess+=W
-" use abbreviations in messages eg. `[RO]` instead of `[readonly]`
-set shortmess+=a
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-" overwrite file-written messages
-set shortmess+=o
-" truncate file messages at start
-set shortmess+=t
-
-" always show signcolumns
-set signcolumn=yes
-
-" update vim after file update from outside
-set autoread
-
-" clipboard
-set clipboard=unnamed
-
-" no swap files
-set noswapfile
+syntax enable
+set fileencodings=utf-8,sjis,euc-jp,latin
+set encoding=utf-8
+set title
+set autoindent
+set background=dark
 set nobackup
-set nowritebackup
-set nowb
+set hlsearch
+set showcmd
+set cmdheight=1
+set laststatus=2
+set scrolloff=10
+set expandtab
+"let loaded_matchparen = 1
+set shell=fish
+set backupskip=/tmp/*,/private/tmp/*
 
-" persistent undo
-" keep undo history across sessions, by storing in file.
-" only works all the time.
-if has('persistent_undo')
-  silent !mkdir ~/.vim/backups > /dev/null 2>&1
-  set undodir=~/.vim/backups
-  set undofile
+" incremental substitution (neovim)
+if has('nvim')
+  set inccommand=split
 endif
 
-" Indentation
-set autoindent
-" set smartindent
-set smarttab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
+" Suppress appending <PasteStart> and <PasteEnd> when pasting
+set t_BE=
 
-" Always use spaces insted of tabs
-set expandtab
-
-" Open splits on the right and below
-set splitbelow
-set splitright
-
-" autocomplete
-" set completeopt+=preview
-" set pumheight=15
-
-" Better search
-set hlsearch
-set incsearch
-
-" Ingore case in search
+set nosc noru nosm
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+"set showmatch
+" How many tenths of a second to blink when matching brackets
+"set mat=2
+" Ignore case when searching
 set ignorecase
-set smartcase
-
-" Use silver search for speed
-" if executable('ag')
-"   let g:ackprg = 'ag --vimgrep'
-" endif
-
-" Don't wrap lines
-set wrap
-" Wrap lines at convenient points
-set linebreak
-" Show line breaks
-" set showbreak=↳
-let &showbreak='↳ '
-
-
-" Automatically :write before running commands
-set autowrite
-
-" Reduce Command timeout for faster escape and O
-set timeoutlen=1000 ttimeoutlen=0
-
-" Jump to first non-blank character
-set nostartofline
-
-"Highlight matching bracket
-set showmatch
-" let g:matchparen_timeout = 2
-" let g:matchparen_insert_timeout = 2
-
-" Do not load netrw
-" let g:loaded_netrwPlugin = 1
-
-" Do not load matchit, use matchup plugin
-" let g:loaded_matchit = 1
-
-" let g:loaded_matchparen=1
-
-" Don't show mode
-set noshowmode
-
-" Hightlight 80 symbols
-" set colorcolumn=80
-
-" Neosnippets conceal marker
-set conceallevel=0
-
-" Start scrolling when we'are 8 lines aways from borders
-set scrolloff=8
-set sidescrolloff=15
-set sidescroll=5
-
-" Live replace with additional buffer
-set inccommand=nosplit
-
-" Disable mouse scrolling
-set mouse=a
-
-" Always show column for errors on the left
-set signcolumn=yes
-
-" Disable cursor blinking
-set gcr=a:blinkon0
-
-" Set gui cursor
-set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50
-
-" This makes vim act like all other editors, buffers can
-" exist in the background without being in a window.
-set hidden
-
-" Allows to use gui colors in terminal
-set t_Co=256
-set termguicolors
-
-" Dark background
-set background=dark
-
-" Add the g flag to search/replace by default
-set gdefault
-
-" Escape key timeout
-set timeoutlen=1000 ttimeoutlen=0
-
-" Configure spellchecking
-" setlocal spellfile=~/.vim/spell/en.utf-8.add
-setlocal spelllang=en
-
-" Set faster redrawing
-set ttyfast
-
-set shell=$SHELL
-
-" Vimdiff should always be vertical
-set diffopt+=vertical
-
-" enable syntax highlight
-syntax on
-
-" make indentation based on filetype
+" Be smart when using tabs ;)
+set smarttab
+" indents
 filetype plugin indent on
+set shiftwidth=2
+set tabstop=2
+set ai "Auto indent
+set si "Smart indent
+set nowrap "No Wrap lines
+set backspace=start,eol,indent
+" Finding files - Search down into subfolders
+set path+=**
+set wildignore+=*/node_modules/*
+
+" Turn off paste mode when leaving insert
+autocmd InsertLeave * set nopaste
+
+" Add asterisks in block comments
+set formatoptions+=r
+
+"}}}
+
+" Highlights "{{{
+" ---------------------------------------------------------------------
+set cursorline
+"set cursorcolumn
+
+" Set cursor line color on visual mode
+highlight Visual cterm=NONE ctermbg=236 ctermfg=NONE guibg=Grey40
+
+highlight LineNr cterm=none ctermfg=240 guifg=#2b506e guibg=#000000
+
+augroup BgHighlight
+  autocmd!
+  autocmd WinEnter * set cul
+  autocmd WinLeave * set nocul
+augroup END
+
+if &term =~ "screen"
+  autocmd BufEnter * if bufname("") !~ "^?[A-Za-z0-9?]*://" | silent! exe '!echo -n "\ek[`hostname`:`basename $PWD`/`basename %`]\e\\"' | endif
+  autocmd VimLeave * silent!  exe '!echo -n "\ek[`hostname`:`basename $PWD`]\e\\"'
+endif
+
+"}}}
+
+" File types "{{{
+" ---------------------------------------------------------------------
+" JavaScript
+au BufNewFile,BufRead *.es6 setf javascript
+" TypeScript
+au BufNewFile,BufRead *.tsx setf typescriptreact
+" Markdown
+au BufNewFile,BufRead *.md set filetype=markdown
+au BufNewFile,BufRead *.mdx set filetype=markdown
+" Flow
+au BufNewFile,BufRead *.flow set filetype=javascript
+" Fish
+au BufNewFile,BufRead *.fish set filetype=fish
+
+set suffixesadd=.js,.es,.jsx,.json,.css,.less,.sass,.styl,.php,.py,.md
+
+autocmd FileType coffee setlocal shiftwidth=2 tabstop=2
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+
+"}}}
