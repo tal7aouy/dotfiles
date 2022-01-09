@@ -3,7 +3,8 @@
 nmap <Leader>s :write<Enter>
 
 " open nerdTree
-nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-f> :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 " open terminal
 nnoremap <C-t> :terminal<CR>
 
