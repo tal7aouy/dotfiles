@@ -66,9 +66,6 @@ Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 " Haskell highlighting
 Plug 'neovimhaskell/haskell-vim'
 
-" Markdown preview
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
-
 " Handlebars highlight
 Plug 'mustache/vim-mustache-handlebars'
 
