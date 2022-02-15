@@ -109,3 +109,12 @@ autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 
 "}}}
+
+let NERDTreeMinimalUI=1
+let NERDTreeShowHidden=1
+augroup nerdtreehidecwd
+  autocmd!
+  autocmd FileType nerdtree setlocal conceallevel=3
+          \ | syntax match NERDTreeHideCWD #^[</].*$# conceal
+          \ | setlocal concealcursor=n
+augroup end
